@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  parkings.api:
+    image: ${DOCKER_REGISTRY-}parkingsapi
+    build:
+      context: .
+      dockerfile: Parkings.API/Dockerfile
