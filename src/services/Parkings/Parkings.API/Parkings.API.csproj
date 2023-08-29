@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Parkings.Infrastructure\Parkings.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
