@@ -25,4 +25,5 @@ public class ParkingsDbContext : DbContext
     public DbSet<Valet> Valets { get; set; }
     public DbSet<Owner> Owners { get; set; }
     public DbSet<ParkingLot> ParkingLots { get; set; }
+    public DbSet<ParkingMembership> ParkingMemberships { get; set; }
 }

@@ -30,6 +30,11 @@ public class ParkingLotRepository : IParkingLotRepository
         return created;
     }
 
+    public Task<ParkingLot> Delete(string parkingLotId)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <inheritdoc/>
     public async Task<ICollection<ParkingLot>> GetAll()
     {
@@ -40,5 +45,25 @@ public class ParkingLotRepository : IParkingLotRepository
     public Task<ParkingLot?> GetById(string id)
     {
         return db.ParkingLots.FirstOrDefaultAsync(p => p.Id == id && p.DateDeleted == null);
+    }
+
+    public Task<ICollection<ParkingMembership>> GetMembersByState(string parkingLotId, ParkingMembershipStatus[] statuses)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<ParkingMembership?> InviteValet(string parkingLotId, string valetEmail)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> KickValet(string parkingLotId, string valetEmail)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> Update(ParkingLot parkingLot)
+    {
+        throw new NotImplementedException();
     }
 }

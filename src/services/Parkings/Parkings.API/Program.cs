@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddParkingDbContext(builder.Configuration);
 
 builder.Services.AddScoped<IParkingLotRepository, ParkingLotRepository>();
+builder.Services.AddScoped<IValetRepository, ValetRepository>();
 
 var app = builder.Build();
 
