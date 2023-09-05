@@ -1,6 +1,4 @@
-﻿using Parkings.Domain.Models;
-
-namespace Parkings.API.Dto;
+﻿namespace Parkings.API.Dto;
 
 
 public class ParkingLotForListDto

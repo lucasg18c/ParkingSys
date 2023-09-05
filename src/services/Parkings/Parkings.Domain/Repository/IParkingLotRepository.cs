@@ -43,30 +43,36 @@ public interface IParkingLotRepository
     Task<ParkingLot> Delete(string parkingLotId);
 
     /// <summary>
-    /// Send an invite to a valet to join a parking lot
+    /// Invites a valet to a parking lot by their email address.
     /// </summary>
-    /// <param name="parkingLotId">Parking lot's id</param>
-    /// <param name="valetEmail">Invited valet's email</param>
-    /// <returns>Parking memebrship if the invite was successful</returns>
+    /// <param name="parkingLotId">The ID of the parking lot to which the valet is invited.</param>
+    /// <param name="valetEmail">The email address of the valet to invite.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. Returns a <see cref="ParkingMembership"/> object
+    /// representing the invitation if successful, or null if the valet was already invited, the valet or parking lot doesn't exist.
+    /// </returns>
     Task<ParkingMembership?> InviteValet(
         string parkingLotId,
         string valetEmail);
 
     /// <summary>
-    /// 
+    /// Retrieves a collection of parking memberships based on the specified parking lot ID and membership statuses.
     /// </summary>
-    /// <param name="parkingLotId"></param>
-    /// <param name="statuses"></param>
-    /// <returns></returns>
+    /// <param name="parkingLotId">The ID of the parking lot to filter memberships.</param>
+    /// <param name="statuses">An array of parking membership statuses to filter by.</param>
+    /// <returns>A task that represents the asynchronous operation, returning a collection of parking memberships matching the criteria.</returns>
     Task<ICollection<ParkingMembership>> GetMembersByState(
         string parkingLotId,
         ParkingMembershipStatus[] statuses);
 
     /// <summary>
-    /// 
+    /// Kicks a valet from a parking lot by their email address.
     /// </summary>
-    /// <param name="parkingLotId"></param>
-    /// <param name="valetEmail"></param>
-    /// <returns></returns>
+    /// <param name="parkingLotId">The ID of the parking lot from which the valet is kicked.</param>
+    /// <param name="valetEmail">The email address of the valet to kick.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. Returns true if the valet was successfully kicked,
+    /// or false if the valet was not found.
+    /// </returns>
     Task<bool> KickValet(string parkingLotId, string valetEmail);
 }

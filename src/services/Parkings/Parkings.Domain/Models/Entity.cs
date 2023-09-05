@@ -3,7 +3,8 @@
 public class Entity
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
+
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
-    public DateTime DateUpdated{ get; set; } = DateTime.UtcNow;
-    public DateTime? DateDeleted{ get; set; }
+
+    public DateTime DateUpdated { get; set; } = DateTime.UtcNow;
 }

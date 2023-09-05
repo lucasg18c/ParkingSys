@@ -38,32 +38,106 @@ public class ParkingLotRepository : IParkingLotRepository
     /// <inheritdoc/>
     public async Task<ICollection<ParkingLot>> GetAll()
     {
-        return await db.ParkingLots.Where(p => p.DateDeleted == null).ToListAsync();
+        return await db.ParkingLots.ToListAsync();
     }
 
     /// <inheritdoc/>
     public Task<ParkingLot?> GetById(string id)
     {
-        return db.ParkingLots.FirstOrDefaultAsync(p => p.Id == id && p.DateDeleted == null);
+        return db.ParkingLots.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public Task<ICollection<ParkingMembership>> GetMembersByState(string parkingLotId, ParkingMembershipStatus[] statuses)
+    /// <inheritdoc/>
+    public async Task<ICollection<ParkingMembership>> GetMembersByState(
+        string parkingLotId,
+        ParkingMembershipStatus[] statuses)
     {
-        throw new NotImplementedException();
+        return await db.ParkingMemberships
+            .Where(p => p.ParkingLot.Id == parkingLotId && statuses.Contains(p.Status))
+            .ToListAsync();
     }
 
-    public Task<ParkingMembership?> InviteValet(string parkingLotId, string valetEmail)
+    /// <inheritdoc/>
+    public async Task<ParkingMembership?> InviteValet(string parkingLotId, string valetEmail)
     {
-        throw new NotImplementedException();
+        var existingInvite = await GetMembership(parkingLotId, valetEmail);
+
+        // this valet was already invited
+        if (existingInvite is not null)
+        {
+            return null;
+        }
+
+        var valet = await db.Valets.FirstOrDefaultAsync(v => v.Email == valetEmail);
+
+        // Valet doesn't exist
+        if (valet is null)
+        {
+            return null;
+        }
+
+        var parking = await GetById(parkingLotId);
+
+        // Parking doesn't exist
+        if (parking is null)
+        {
+            return null;
+        }
+
+        var invite = new ParkingMembership
+        {
+            Valet = valet,
+            ParkingLot = parking,
+        };
+
+        db.ParkingMemberships.Add(invite);
+
+        await db.SaveChangesAsync();
+
+        return invite;
     }
 
-    public Task<bool> KickValet(string parkingLotId, string valetEmail)
+    /// <inheritdoc/>
+    public async Task<bool> KickValet(string parkingLotId, string valetEmail)
     {
-        throw new NotImplementedException();
+        var valetMembership = await GetMembership(parkingLotId, valetEmail);
+
+        // Valet not found
+        if (valetMembership is null)
+        {
+            return false;
+        }
+
+        valetMembership.Status = ParkingMembershipStatus.Kicked;
+        valetMembership.DateUpdated = DateTime.UtcNow;
+
+        await db.SaveChangesAsync();
+
+        return true;
     }
 
-    public Task<bool> Update(ParkingLot parkingLot)
+    /// <inheritdoc/>
+    public async Task<bool> Update(ParkingLot parkingLot)
     {
-        throw new NotImplementedException();
+        var found = await GetById(parkingLot.Id);
+
+        // Parking was not found
+        if (found is null)
+        {
+            return false;
+        }
+
+        found.OwnerId = parkingLot.OwnerId ?? found.OwnerId;
+        found.Name = parkingLot.Name ?? found.Name;
+
+        await db.SaveChangesAsync();
+
+        return true;
+    }
+
+    private Task<ParkingMembership?> GetMembership(string parkingLotId, string valetEmail)
+    {
+        return db.ParkingMemberships
+            .FirstOrDefaultAsync(p => p.ParkingLot.Id == parkingLotId && p.Valet.Email == valetEmail);
     }
 }
