@@ -27,5 +27,13 @@ public interface IValetRepository
     Task<ICollection<ParkingMembership>> GetMembershipsByState(
         string valetId,
         ParkingMembershipStatus[] statuses);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="inviteId"></param>
+    /// <param name="accepted"></param>
+    /// <returns></returns>
+    Task<ParkingMembership?> ProcessInvite(string inviteId, bool accepted);
 }
 

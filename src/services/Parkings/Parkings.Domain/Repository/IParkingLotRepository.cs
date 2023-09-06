@@ -66,6 +66,13 @@ public interface IParkingLotRepository
         ParkingMembershipStatus[] statuses);
 
     /// <summary>
+    /// Retrieves a collection of Valets that are currently employees of the parking lot.
+    /// </summary>
+    /// <param name="parkingLotId">The ID of the parking lot to filter memberships.</param>
+    /// <returns></returns>
+    Task<ICollection<Valet>> GetCurrentMembers(string parkingLotId);
+
+    /// <summary>
     /// Kicks a valet from a parking lot by their email address.
     /// </summary>
     /// <param name="parkingLotId">The ID of the parking lot from which the valet is kicked.</param>

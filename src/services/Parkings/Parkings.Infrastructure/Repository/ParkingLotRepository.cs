@@ -48,6 +48,16 @@ public class ParkingLotRepository : IParkingLotRepository
     }
 
     /// <inheritdoc/>
+    public async Task<ICollection<Valet>> GetCurrentMembers(string parkingLotId)
+    {
+        return await db.ParkingMemberships
+            .Where(p => p.ParkingLot.Id == parkingLotId && p.Status == ParkingMembershipStatus.Accepted)
+            .Include(p => p.Valet)
+            .Select(p => p.Valet)
+            .ToListAsync();
+    }
+
+    /// <inheritdoc/>
     public async Task<ICollection<ParkingMembership>> GetMembersByState(
         string parkingLotId,
         ParkingMembershipStatus[] statuses)
@@ -129,6 +139,7 @@ public class ParkingLotRepository : IParkingLotRepository
 
         found.OwnerId = parkingLot.OwnerId ?? found.OwnerId;
         found.Name = parkingLot.Name ?? found.Name;
+        found.DateUpdated = DateTime.UtcNow;
 
         await db.SaveChangesAsync();
 

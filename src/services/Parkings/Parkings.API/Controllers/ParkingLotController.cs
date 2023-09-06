@@ -63,4 +63,26 @@ public class ParkingLotController : ControllerBase
             DateUpdated = created.DateUpdated
         };
     }
+
+    [HttpPost("parkinglot/{parkingLotId}/invite/{valetEmail}")]
+    public async Task<IActionResult> InviteValet(string parkingLotId, string valetEmail)
+    {
+        var res = await _parkingRepository.InviteValet(parkingLotId, valetEmail);
+
+        return res is null ? BadRequest() : Ok();
+    }
+
+    [HttpGet("parkinglot/{parkingLotId}/valets")]
+    public async Task<IEnumerable<ValetForListDto>> GetValets(string parkingLotId)
+    {
+        var valets = await _parkingRepository.GetCurrentMembers(parkingLotId);
+
+        return valets.Select(v => new ValetForListDto
+        {
+            Id = v.Id,
+            Email = v.Email,
+            LastName = v.LastName,
+            Name = v.Name
+        });
+    }
 }
