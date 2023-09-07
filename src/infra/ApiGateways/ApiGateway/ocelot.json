@@ -1,6 +1,18 @@
 {
   "Routes": [
     {
+      "UpstreamPathTemplate": "/api/account",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/account"
+    },
+    {
       "UpstreamPathTemplate": "/api/parkinglots",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamScheme": "http",

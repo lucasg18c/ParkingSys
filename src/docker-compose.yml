@@ -49,6 +49,14 @@ services:
     networks:
       - backend
 
+  accounts.api:
+    image: ${DOCKER_REGISTRY-}accountsapi
+    build:
+      context: .
+      dockerfile: services/Account/Accounts.API/Dockerfile
+    networks:
+      - backend
+
 volumes:
   local_pgdata:
   pgadmin-data:

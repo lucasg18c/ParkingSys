@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "parkings.api": "StartDebugging",
-        "apigateway": "StartDebugging"
+        "apigateway": "StartDebugging",
+        "accounts.api": "StartDebugging"
       }
     }
   }
