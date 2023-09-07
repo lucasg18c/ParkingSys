@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>ab881ee9-27b5-474f-9dd1-efa1883237d1</ProjectGuid>
+    <ProjectGuid>f5b7bf57-0ad9-4808-ab95-2fca3a295d05</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>parkings.api</DockerServiceName>

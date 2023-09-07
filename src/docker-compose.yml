@@ -11,6 +11,9 @@ services:
       POSTGRES_PASSWORD: root
     volumes:
       - local_pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+  
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -23,14 +26,32 @@ services:
       - db
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - backend
+
   parkings.api:
     image: ${DOCKER_REGISTRY-}parkingsapi
     build:
       context: .
-      dockerfile: Parkings.API/Dockerfile
+      dockerfile: services/Parkings/Parkings.API/Dockerfile
     depends_on: 
       - db
+    networks:
+      - backend
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: infra/ApiGateways/ApiGateway/Dockerfile
+    ports:
+      - 8001:80
+    networks:
+      - backend
 
 volumes:
   local_pgdata:
   pgadmin-data:
+  
+networks:
+  backend:    

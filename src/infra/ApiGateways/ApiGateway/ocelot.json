@@ -1,0 +1,91 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/parkinglots",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/parkinglots"
+    },
+    {
+      "UpstreamPathTemplate": "/api/parkinglot/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/parkinglot/{id}"
+    },
+    {
+      "UpstreamPathTemplate": "/api/parkinglot",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/parkinglot"
+    },
+    {
+      "UpstreamPathTemplate": "/api/parkinglot/{parkingLotId}/invite/{valetEmail}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/parkinglot/{parkingLotId}/invite/{valetEmail}"
+    },
+    {
+      "UpstreamPathTemplate": "/api/parkinglot/{parkingLotId}/valets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/parkinglot/{parkingLotId}/valets"
+    },
+    {
+      "UpstreamPathTemplate": "/api/valet/{id}/invites",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/"
+    },
+    {
+      "UpstreamPathTemplate": "/api/valet/invite/{inviteId}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "parkings.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/valet/invite/{inviteId}"
+    },
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8001"
+  }
+}
