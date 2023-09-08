@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/api/account",
+      "UpstreamPathTemplate": "/api/account/signin",
       "UpstreamHttpMethod": [ "Post" ],
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -10,7 +10,19 @@
           "Port": 80
         }
       ],
-      "DownstreamPathTemplate": "/api/account"
+      "DownstreamPathTemplate": "/api/account/signin"
+    },
+    {
+      "UpstreamPathTemplate": "/api/account/signup",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts.api",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/account/signup"
     },
     {
       "UpstreamPathTemplate": "/api/parkinglots",

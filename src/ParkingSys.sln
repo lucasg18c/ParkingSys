@@ -31,9 +31,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{3AACF3D9-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{DF8965CD-DF37-4031-B0F8-C3886FE70903}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthManager", "infra\Auth\JwtAuthManager\JwtAuthManager.csproj", "{09F1836F-77F0-466D-BDD6-4E81959E0C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthManager", "infra\Auth\JwtAuthManager\JwtAuthManager.csproj", "{09F1836F-77F0-466D-BDD6-4E81959E0C97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts.API", "services\Account\Accounts.API\Accounts.API.csproj", "{79106FFA-CF49-4D07-936C-FC617EA65C40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.API", "services\Account\Accounts.API\Accounts.API.csproj", "{79106FFA-CF49-4D07-936C-FC617EA65C40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain", "services\Account\Accounts.Domain\Accounts.Domain.csproj", "{FEFD17D3-34DF-426B-9652-1606280B5D91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Infrastructure", "services\Account\Accounts.Infrastructure\Accounts.Infrastructure.csproj", "{303315E7-0798-40C8-B9F3-2898CA251B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,14 @@ Global
 		{79106FFA-CF49-4D07-936C-FC617EA65C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79106FFA-CF49-4D07-936C-FC617EA65C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79106FFA-CF49-4D07-936C-FC617EA65C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEFD17D3-34DF-426B-9652-1606280B5D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEFD17D3-34DF-426B-9652-1606280B5D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEFD17D3-34DF-426B-9652-1606280B5D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEFD17D3-34DF-426B-9652-1606280B5D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{303315E7-0798-40C8-B9F3-2898CA251B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{303315E7-0798-40C8-B9F3-2898CA251B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{303315E7-0798-40C8-B9F3-2898CA251B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{303315E7-0798-40C8-B9F3-2898CA251B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +103,8 @@ Global
 		{DF8965CD-DF37-4031-B0F8-C3886FE70903} = {E4FCCE67-547C-4254-88F3-D46171A7A70A}
 		{09F1836F-77F0-466D-BDD6-4E81959E0C97} = {3AACF3D9-7122-4363-AD3C-8550D0BC492C}
 		{79106FFA-CF49-4D07-936C-FC617EA65C40} = {DF8965CD-DF37-4031-B0F8-C3886FE70903}
+		{FEFD17D3-34DF-426B-9652-1606280B5D91} = {DF8965CD-DF37-4031-B0F8-C3886FE70903}
+		{303315E7-0798-40C8-B9F3-2898CA251B3B} = {DF8965CD-DF37-4031-B0F8-C3886FE70903}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0F413F8-FD1A-4BAD-9CEB-69ECBC51FFF6}

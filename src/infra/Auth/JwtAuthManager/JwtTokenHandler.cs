@@ -9,25 +9,22 @@ namespace JwtAuthManager;
 public class JwtTokenHandler
 {
     public const string JWT_SECURITY_KEY = "Ok1fBkleIYkz3543DP66TktkaERhIZoiQ5v4vnoJHcPCj3uFBu";
-    private const int JWT_TOKEN_VALIDITY_MINS = 20;
+    private const int JWT_TOKEN_VALIDITY_MINS = 60 * 24 * 7; // 1 week
 
-    public AuthResponse? GenerateJwtToken(AuthRequest request)
+    public AuthResponse? GenerateJwtToken(string email, string userId, string role)
     {
-        if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password))
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(userId))
         {
             return null;
         }
-
-        /* Validation */
-        //var userAccount = _userAccountList.Where(x => x.UserName == authenticationRequest.UserName && x.Password == authenticationRequest.Password).FirstOrDefault();
-        //if (userAccount == null) return null;
 
         var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
         var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
         var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Name, request.UserName),
-                new Claim("Role", "Admin") // todo: set to User discriminator
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(JwtRegisteredClaimNames.Name, userId),
+                new Claim("Role", role)
             });
 
         var signingCredentials = new SigningCredentials(
@@ -47,7 +44,7 @@ public class JwtTokenHandler
 
         return new AuthResponse
         {
-            UserName = request.UserName,
+            UserId = userId,
             ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds,
             JwtToken = token
         };
