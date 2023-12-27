@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JwtAuthManager;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Parkings.API.Dto;
 using Parkings.Domain.Repository;
 
@@ -6,6 +8,7 @@ namespace Parkings.API.Controllers;
 
 [Route("api")]
 [ApiController]
+[Authorize]
 public class ParkingLotController : ControllerBase
 {
     private readonly IParkingLotRepository _parkingRepository;
@@ -17,8 +20,9 @@ public class ParkingLotController : ControllerBase
     [HttpGet("parkinglots")]
     public async Task<ICollection<ParkingLotForListDto>> GetParkings()
     {
+        var userId = HttpContext.GetClaims().UserId;
         var res = await _parkingRepository.GetAll();
-
+        
         return res.Select(p => new ParkingLotForListDto
         {
             Id = p.Id,

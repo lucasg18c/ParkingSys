@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\infra\Auth\JwtAuthManager\JwtAuthManager.csproj" />
     <ProjectReference Include="..\Parkings.Domain\Parkings.Domain.csproj" />
     <ProjectReference Include="..\Parkings.Infrastructure\Parkings.Infrastructure.csproj" />
   </ItemGroup>
